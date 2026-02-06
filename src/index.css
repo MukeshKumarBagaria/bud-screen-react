@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+@theme {
+    /* 1. TYPOGRAPHY SYSTEM ------------------------------------------ */
+    /* Font Family */
+    --font-sans: "Noto Sans", sans-serif;
+
+    /* Display Headings (H1-H3) */
+    --font-size-display-h1: 72px;
+    --line-height-display-h1: 100px;
+    --font-size-display-h2: 64px;
+    --line-height-display-h2: 96px;
+    --font-size-display-h3: 56px;
+    --line-height-display-h3: 84px;
+
+    /* Headers (H4-H5) */
+    --font-size-header-h4: 32px;
+    --line-height-header-h4: 48px;
+    --font-size-header-h5: 20px;
+    --line-height-header-h5: 30px;
+
+    /* Body Text */
+    --font-size-body-base: 14px;
+    --line-height-body-base: 21px;
+    --font-size-body-small: 11px;
+    --line-height-body-small: 16px;
+
+    /* Font Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+
+
+    /* 2. COLOR PALETTES -------------------------------------------- */
+
+    /* Brand Blue (Existing) */
+    --color-brand-blue-25: #E5F4FF;
+    --color-brand-blue-50: #CDEAFE;
+    --color-brand-blue-100: #A3D3F5;
+    --color-brand-blue-200: #71BDF4;
+    --color-brand-blue-300: #309CE8;
+    --color-brand-blue-400: #1D81C9;
+    --color-brand-blue-500: #1B6498;
+    /* Base */
+    --color-brand-blue-600: #1B557E;
+    --color-brand-blue-700: #1A4666;
+    --color-brand-blue-800: #17384F;
+    --color-brand-blue-900: #132939;
+    --color-brand-blue-950: #0E1B25;
+
+    /* Brand Yellow (Existing) */
+    --color-brand-yellow-25: #FFF9E5;
+    --color-brand-yellow-50: #FFF3CC;
+    --color-brand-yellow-100: #FFE799;
+    --color-brand-yellow-200: #FFDB66;
+    --color-brand-yellow-300: #FFCF33;
+    --color-brand-yellow-400: #FFC91A;
+    --color-brand-yellow-500: #FFC300;
+    /* Base */
+    --color-brand-yellow-600: #DAA90B;
+    --color-brand-yellow-700: #8A6D0F;
+    --color-brand-yellow-800: #664E00;
+    --color-brand-yellow-900: #4D3B00;
+    --color-brand-yellow-950: #332700;
+
+    /* Brand Grey  */
+    --color-brand-grey-25: #F7F7F7;
+    --color-brand-grey-50: #F2F2F2;
+    --color-brand-grey-100: #D9D9D9;
+    --color-brand-grey-200: #BFBFBF;
+    --color-brand-grey-300: #999999;
+    --color-brand-grey-400: #808080;
+    --color-brand-grey-500: #666666;
+    --color-brand-grey-600: #4D4D4D;
+    --color-brand-grey-700: #404040;
+    --color-brand-grey-800: #333333;
+    --color-brand-grey-900: #292929;
+    --color-brand-grey-950: #1F1F1F;
+
+    /* Brand Green  */
+    --color-brand-green-50: #DEF7D4;
+    --color-brand-green-100: #BDF0A8;
+    --color-brand-green-200: #9BE87D;
+    --color-brand-green-300: #7AE052;
+    --color-brand-green-400: #59D926;
+    --color-brand-green-500: #358217;
+    /* Base */
+    --color-brand-green-600: #2C6C13;
+    --color-brand-green-700: #24570F;
+    --color-brand-green-800: #1B410B;
+    --color-brand-green-900: #122B08;
+
+    /* Brand Red  */
+    --color-brand-red-50: #F7D4D5;
+    --color-brand-red-100: #F0A8AC;
+    --color-brand-red-200: #E87D82;
+    --color-brand-red-300: #E05259;
+    --color-brand-red-400: #D9262F;
+    --color-brand-red-500: #B8141D;
+    /* Base */
+    --color-brand-red-600: #6C1318;
+    --color-brand-red-700: #570F13;
+    --color-brand-red-800: #410B0E;
+    --color-brand-red-900: #2B0809;
+
+    /* Brand Orange (New - from Screenshot 4.35.12 PM) */
+    --color-brand-orange-50: #FFF0E5;
+    --color-brand-orange-100: #FFE1CC;
+    --color-brand-orange-200: #FFC399;
+    --color-brand-orange-300: #FFA666;
+    --color-brand-orange-400: #FF8833;
+    --color-brand-orange-500: #FF6A00;
+    /* Base */
+    --color-brand-orange-600: #803500;
+    --color-brand-orange-700: #662A00;
+    --color-brand-orange-800: #4C2000;
+    --color-brand-orange-900: #331500;
+
+
+    /* 3. FUNCTIONAL COLORS & TOKENS -------------------------------- */
+
+    /* Status Colors (Mapped to specific UI states) */
+    --color-status-draft-bg: #C6F6D5;
+    --color-status-draft-text: #22543D;
+    --color-status-hold-bg: #FEEBC8;
+    --color-status-hold-text: #7B341E;
+    --color-status-reject-bg: #FED7D7;
+    --color-status-reject-text: #822727;
+
+    /* Text Assignments */
+    --color-text-primary: var(--color-brand-grey-800);
+    /* #333333 */
+    --color-text-secondary: var(--color-brand-grey-400);
+    /* #808080 */
+    --color-text-placeholder: #A0AEC0;
+
+    /* Components Spacing & Radius */
+    --spacing-input-h: 44px;
+    --spacing-input-w: 350px;
+
+    /* Global Radius */
+    --radius-input: 8px;
+    --radius-btn: 8px;
+    /* Updated per your instruction: "no radius for button will be 8 only" */
+
+    /* Global Borders */
+    --border-width-1-5: 1.5px;
+}
+
+
+/* ================================================================== */
+/* 4. BUTTON TOKENS (in :root for JavaScript/MUI access)             */
+/* ================================================================== */
+/* These must be in :root scope for CSS-in-JS to access them         */
+
+:root {
+    /* Button Layout */
+    --btn-height: 44px;
+    --btn-padding-y: 12px;
+    --btn-padding-x: 24px;
+    --btn-gap: 6px;
+    --btn-font-size: 14px;
+    --btn-font-weight: 500;
+    --btn-radius: 8px;
+    --btn-border-width: 1.5px;
+
+    /* Submit Button (Primary Blue) */
+    --btn-submit-bg: #1B6498;
+    --btn-submit-text: #ffffff;
+    --btn-submit-border: none;
+    --btn-submit-hover-bg: #1B557E;
+    --btn-submit-pressed-bg: #1A4666;
+    --btn-submit-focus-ring: #1B6498;
+
+    /* Secondary Button (Outlined Blue) */
+    --btn-secondary-bg: transparent;
+    --btn-secondary-text: #1B6498;
+    --btn-secondary-border: 1.5px solid #1B6498;
+    --btn-secondary-hover-bg: rgba(27, 100, 152, 0.1);
+    --btn-secondary-pressed-bg: rgba(27, 100, 152, 0.2);
+    --btn-secondary-focus-ring: #1B6498;
+
+    /* Reset Button (Outlined Grey) */
+    --btn-reset-bg: transparent;
+    --btn-reset-text: #333333;
+    --btn-reset-border: 1.5px solid #666666;
+    --btn-reset-hover-bg: rgba(102, 102, 102, 0.1);
+    --btn-reset-pressed-bg: rgba(102, 102, 102, 0.2);
+    --btn-reset-focus-ring: #666666;
+
+    /* Return Button (Yellow) */
+    --btn-return-bg: #FFDB66;
+    --btn-return-text: #1F1F1F;
+    --btn-return-border: none;
+    --btn-return-hover-bg: #FFCF33;
+    --btn-return-pressed-bg: #FFC91A;
+    --btn-return-focus-ring: #FFC300;
+
+    /* Draft Button (Green Pastel) */
+    --btn-draft-bg: #BDF0A8;
+    --btn-draft-text: #1B410B;
+    --btn-draft-border: none;
+    --btn-draft-hover-bg: #BDF0A8;
+    --btn-draft-pressed-bg: #9BE87D;
+    --btn-draft-focus-ring: #358217;
+
+    /* Hold Button (Orange Pastel) */
+    --btn-hold-bg: #FFF0E5;
+    --btn-hold-text: #4C2000;
+    --btn-hold-border: none;
+    --btn-hold-hover-bg: #FFE1CC;
+    --btn-hold-pressed-bg: #FFC399;
+    --btn-hold-focus-ring: #FF6A00;
+
+    /* Close Button (Outlined Red) */
+    --btn-close-bg: transparent;
+    --btn-close-text: #B8141D;
+    --btn-close-border: 1.5px solid #B8141D;
+    --btn-close-hover-bg: rgba(184, 20, 29, 0.1);
+    --btn-close-pressed-bg: rgba(184, 20, 29, 0.2);
+    --btn-close-focus-ring: #B8141D;
+
+    /* Reject Button (Red Pastel) */
+    --btn-reject-bg: #E87D82;
+    --btn-reject-text: #410B0E;
+    --btn-reject-border: none;
+    --btn-reject-hover-bg: #E87D82;
+    --btn-reject-pressed-bg: #E87D82;
+    --btn-reject-focus-ring: #B8141D;
+
+    /* Disabled State (All buttons) */
+    --btn-disabled-bg: #D9D9D9;
+    --btn-disabled-text: #808080;
+    --btn-disabled-border: none;
+}

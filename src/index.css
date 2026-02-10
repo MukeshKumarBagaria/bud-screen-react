@@ -231,4 +231,114 @@
     --btn-disabled-bg: #D9D9D9;
     --btn-disabled-text: #808080;
     --btn-disabled-border: none;
+
+    /* ================================================================== */
+    /* 5. INPUT FIELD TOKENS                                              */
+    /* ================================================================== */
+
+    /* Input Layout */
+    --input-height: 44px;
+    --input-width: 350px;
+    --input-radius: 8px;
+    --input-border-width: 1.5px;
+    --input-padding-x: 12px;
+    --input-padding-y: 10px;
+    --input-gap: 8px;
+
+    /* Input Typography */
+    --input-font-size: 14px;
+    --input-font-weight: 400;
+    --input-label-font-size: 14px;
+    --input-label-font-weight: 600;
+    --input-subtext-font-size: 11px;
+
+    /* Input Colors - Labels */
+    --input-label-color: #132939;
+    /* blue-900 */
+    --input-label-required-color: #B8141D;
+    /* red-500 */
+    --input-subtext-color: #808080;
+    /* grey-400 */
+
+    /* Input Colors - Backgrounds */
+    --input-bg-default: #ffffff;
+    --input-bg-fetched: #F6FAFD;
+    /* blue-10 (readonly/fetched) */
+    --input-bg-error: #FDF6F7;
+    /* light pink for error state */
+    --input-bg-disabled: #F2F2F2;
+    /* grey-50 */
+
+    /* Input Colors - Borders */
+    --input-border-default: #4D4D4D;
+    /* grey-600 */
+    --input-border-focus: #1B6498;
+    /* brand-blue-500 */
+    --input-border-error: #B8141D;
+    /* brand-red-500 */
+    --input-border-fetched: transparent;
+    /* no border for fetched */
+
+    /* Input Colors - Text */
+    --input-text-color: #132939;
+    /* blue-900 */
+    --input-placeholder-color: #808080;
+    /* grey-400 */
+
+    /* Input Icons */
+    --input-icon-color: #808080;
+    /* grey-400 */
+    --input-icon-size: 24px;
+
+    /* Radio Button Colors */
+    --radio-checked-color: #1B6498;
+    /* brand-blue-500 */
+    --radio-unchecked-color: #BFBFBF;
+    /* grey-200 */
+    --radio-bg: #F2F2F2;
+    /* grey-50 */
+    --radio-bg-selected: #E5F4FF;
+    /* blue-25 */
+
+    /* Dropdown Colors */
+    --dropdown-arrow-color: #808080;
+    /* grey-400 */
+    --dropdown-option-hover-bg: #F6FAFD;
+    /* blue-10 */
+    --dropdown-bg-default: #FFF9E5;
+    /* yellow-25 cream background */
+    --dropdown-selected-bg: #FFE799;
+    /* yellow-100 for selected option highlight */
+    --dropdown-selected-text: #132939;
+    /* blue-900 */
+    --dropdown-menu-bg: #FFF9E5;
+    /* cream background for menu panel */
+    --dropdown-menu-border: #664E00;
+    /* yellow-800 */
+    --dropdown-fetched-bg: #1B6498;
+    /* blue-500 dark filled bg */
+    --dropdown-fetched-text: #ffffff;
+    --dropdown-fetched-arrow: #ffffff;
+    --dropdown-disabled-bg: #F2F2F2;
+    /* grey-50 */
+    --dropdown-disabled-text: #808080;
+    /* grey-400 */
+    --dropdown-disabled-border: #D9D9D9;
+    /* grey-100 */
+}
+
+/* ================================================================== */
+/* GLOBAL OVERRIDES — Neutralize Tailwind v4 preflight input styles   */
+/* ================================================================== */
+input,
+textarea,
+select {
+    background-color: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
 }

@@ -1,0 +1,260 @@
+/**
+ * InputField Component Styles
+ * Uses CSS variables from index.css for theming
+ */
+
+/* Container */
+.input-field-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--input-gap);
+}
+
+/* Label */
+.input-field-label {
+    font-family: var(--font-sans);
+    font-size: var(--input-label-font-size);
+    font-weight: var(--input-label-font-weight);
+    color: var(--input-label-color);
+    line-height: 21px;
+}
+
+/* Required asterisk */
+.input-field-required {
+    color: var(--input-label-required-color);
+    margin-left: 4px;
+}
+
+/* Subtext / Helper text */
+.input-field-subtext {
+    font-family: var(--font-sans);
+    font-size: var(--input-subtext-font-size);
+    color: var(--input-subtext-color);
+    line-height: 1.45;
+}
+
+.input-field-subtext--error {
+    color: var(--input-border-error);
+}
+
+/* Placeholder styling for dropdown */
+.input-field-placeholder {
+    color: var(--input-placeholder-color);
+}
+
+/* Icon button styling */
+.input-field-icon-btn {
+    padding: 4px;
+    color: var(--input-icon-color);
+}
+
+.input-field-icon-btn:hover {
+    background-color: transparent;
+}
+
+.input-field-icon {
+    font-size: var(--input-icon-size);
+    color: var(--input-icon-color);
+}
+
+/* Edit button with text */
+.input-field-edit-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.input-field-edit-btn:hover {
+    background-color: var(--dropdown-option-hover-bg);
+}
+
+.input-field-edit-text {
+    font-family: var(--font-sans);
+    font-size: var(--input-font-size);
+    font-weight: 500;
+    color: var(--input-border-focus);
+}
+
+/* Radio group container */
+.input-field-radio-group {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+/* Radio label styling */
+.input-field-radio-label .MuiFormControlLabel-label {
+    font-family: var(--font-sans);
+    font-size: var(--input-font-size);
+    font-weight: 500;
+    color: var(--input-text-color);
+}
+
+/* Radio wrapper - pill style from Figma */
+.input-field-radio-group .MuiFormControlLabel-root {
+    margin: 0;
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--radio-bg);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.input-field-radio-group .MuiFormControlLabel-root:has(.Mui-checked) {
+    background-color: var(--radio-bg-selected);
+}
+
+/* ================================================================== */
+/* CUSTOM DROPDOWN STYLES                                              */
+/* ================================================================== */
+
+/* Wrapper for positioning */
+.dropdown-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Trigger - shared base */
+.dropdown-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--input-height);
+    padding: var(--input-padding-y) var(--input-padding-x);
+    font-family: var(--font-sans);
+    font-size: var(--input-font-size);
+    font-weight: var(--input-font-weight);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+/* Trigger - CLOSED state (default grey look) */
+.dropdown-trigger--closed {
+    background-color: var(--dropdown-bg-default);
+    border-radius: var(--input-radius);
+    border: var(--input-border-width) solid var(--input-border-default);
+    color: var(--input-text-color);
+}
+
+.dropdown-trigger--closed:hover {
+    border-color: var(--input-border-focus);
+}
+
+/* Trigger - SELECTED+CLOSED state (grey-50 bg, value chosen) */
+.dropdown-trigger--selected {
+    background-color: var(--dropdown-disabled-bg);
+    border-radius: var(--input-radius);
+    border: var(--input-border-width) solid transparent;
+    color: var(--input-text-color);
+}
+
+.dropdown-trigger--selected:hover {
+    border-color: var(--input-border-focus);
+}
+
+/* Trigger - OPEN state (cream bg, yellow-800 borders, flat bottom) */
+.dropdown-trigger--open {
+    background-color: var(--dropdown-bg-default);
+    border-top: 1px solid var(--dropdown-menu-border);
+    border-right: 1px solid var(--dropdown-menu-border);
+    border-left: 1px solid var(--dropdown-menu-border);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    color: var(--input-text-color);
+}
+
+/* Trigger - FETCHED state (dark blue bg) */
+.dropdown-trigger--fetched {
+    background-color: var(--dropdown-fetched-bg);
+    border-radius: var(--input-radius);
+    border: var(--input-border-width) solid var(--dropdown-fetched-bg);
+    color: var(--dropdown-fetched-text);
+    cursor: default;
+}
+
+.dropdown-trigger--fetched .dropdown-trigger__arrow {
+    color: var(--dropdown-fetched-arrow);
+}
+
+/* Trigger - DISABLED state */
+.dropdown-trigger--disabled {
+    background-color: var(--dropdown-disabled-bg);
+    border-radius: var(--input-radius);
+    border: var(--input-border-width) solid var(--dropdown-disabled-border);
+    color: var(--dropdown-disabled-text);
+    cursor: not-allowed;
+}
+
+/* Trigger text */
+.dropdown-trigger__text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-trigger__placeholder {
+    color: var(--input-placeholder-color);
+}
+
+/* Arrow icon */
+.dropdown-trigger__arrow {
+    flex-shrink: 0;
+    color: var(--dropdown-arrow-color);
+    transition: transform 0.2s ease-in-out;
+}
+
+.dropdown-trigger__arrow--open {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menu panel */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--dropdown-menu-bg);
+    border-right: 1px solid var(--dropdown-menu-border);
+    border-bottom: 1px solid var(--dropdown-menu-border);
+    border-left: 1px solid var(--dropdown-menu-border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+/* Options list */
+.dropdown-menu__list {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Individual option */
+.dropdown-menu__item {
+    padding: 10px 12px;
+    font-family: var(--font-sans);
+    font-size: var(--input-font-size);
+    font-weight: 500;
+    color: var(--input-text-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.dropdown-menu__item:hover {
+    background-color: var(--dropdown-selected-bg);
+}
+
+/* Selected option */
+.dropdown-menu__item--selected {
+    background-color: var(--dropdown-selected-bg);
+}

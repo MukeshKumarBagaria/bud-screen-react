@@ -67,19 +67,6 @@ const DemandMasterScreen = ({ role }) => {
     return (
         <FormLayout
             header={header}
-            actions={
-                <>
-                    {actions.map((action) => (
-                        <ActionButton
-                            key={action.variant}
-                            variant={action.variant}
-                            onClick={handleAction(action.variant)}
-                        >
-                            {action.label}
-                        </ActionButton>
-                    ))}
-                </>
-            }
         >
             <FormSection columns={2}>
                 {visibleFields.map((field) => {
@@ -103,6 +90,31 @@ const DemandMasterScreen = ({ role }) => {
                     );
                 })}
             </FormSection>
+
+            <div style={{
+                marginTop: '16px',
+                padding: '16px',
+                borderRadius: '8px',
+                boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                gap: '16px',
+                width: 'fit-content',
+                marginLeft: 'auto',
+                marginRight: '24px',
+                marginBottom: '24px',
+                backgroundColor: '#fff',
+            }}>
+                {actions.map((action) => (
+                    <ActionButton
+                        key={action.variant}
+                        variant={action.variant}
+                        onClick={handleAction(action.variant)}
+                    >
+                        {action.label}
+                    </ActionButton>
+                ))}
+            </div>
         </FormLayout>
     );
 };

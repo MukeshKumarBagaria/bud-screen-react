@@ -10,13 +10,15 @@
     gap: var(--input-gap);
 }
 
-/* Label */
-.input-field-label {
+/* Label — matches Figma: Body/Base/EN-B */
+.input-field-label,
+.input-field-label.MuiFormLabel-root {
     font-family: var(--font-sans);
     font-size: var(--input-label-font-size);
+    font-style: normal;
     font-weight: var(--input-label-font-weight);
-    color: var(--input-label-color);
     line-height: 21px;
+    color: var(--input-label-color);
 }
 
 /* Required asterisk */
@@ -57,24 +59,44 @@
     color: var(--input-icon-color);
 }
 
-/* Edit button with text */
+/* Edit button — Figma spec */
 .input-field-edit-btn {
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 4px 8px;
-    border-radius: 4px;
+    gap: 6px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
 }
 
 .input-field-edit-btn:hover {
-    background-color: var(--dropdown-option-hover-bg);
+    opacity: 0.85;
+}
+
+/* Pencil icon circular wrapper — Figma: 20×20, 3px padding, circle, blue-25 bg */
+.input-field-edit-icon-wrap {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background: var(--color-brand-blue-25, #E5F4FF);
+}
+
+.input-field-edit-icon {
+    font-size: 14px;
+    color: var(--color-brand-blue-500, #1B6498);
 }
 
 .input-field-edit-text {
     font-family: var(--font-sans);
     font-size: var(--input-font-size);
     font-weight: 500;
-    color: var(--input-border-focus);
+    color: var(--color-brand-blue-500, #1B6498);
 }
 
 /* Radio group container */
@@ -224,7 +246,7 @@
     border-left: 1px solid var(--dropdown-menu-border);
     border-top: none;
     border-radius: 0 0 8px 8px;
-    z-index: 10;
+    z-index: 200;
     box-sizing: border-box;
 }
 
@@ -257,4 +279,63 @@
 /* Selected option */
 .dropdown-menu__item--selected {
     background-color: var(--dropdown-selected-bg);
+}
+
+/* ================================================================== */
+/* TEXTAREA STYLES                                                     */
+/* ================================================================== */
+
+.input-field-textarea .MuiOutlinedInput-root {
+    height: auto;
+    align-items: flex-start;
+}
+
+.input-field-textarea .MuiOutlinedInput-input {
+    resize: vertical;
+}
+
+/* ================================================================== */
+/* STATUS CHIP (fetched Active Status display)                         */
+/* ================================================================== */
+
+.input-field-status-display {
+    display: flex;
+    align-items: center;
+}
+
+.input-field-status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-family: var(--font-sans);
+    font-size: var(--input-font-size);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.input-field-status-chip--active {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+.input-field-status-chip--inactive {
+    background-color: #FFEBEE;
+    color: #C62828;
+}
+
+.input-field-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.input-field-status-chip--active .input-field-status-dot {
+    background-color: #2E7D32;
+}
+
+.input-field-status-chip--inactive .input-field-status-dot {
+    background-color: #C62828;
 }

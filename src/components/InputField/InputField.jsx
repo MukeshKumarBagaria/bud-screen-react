@@ -30,6 +30,8 @@ const INPUT_TYPES = {
     dropdown: 'dropdown',
     fetchedDropdown: 'fetchedDropdown',
     switch: 'switch',
+    textarea: 'textarea',
+    fetchedTextarea: 'fetchedTextarea',
 };
 const StyledTextField = styled(TextField)(({ inputType }) => {
     const isFetched = inputType === 'fetched';
@@ -77,17 +79,23 @@ const StyledTextField = styled(TextField)(({ inputType }) => {
 
             // Disabled state
             '&.Mui-disabled': {
-                backgroundColor: 'var(--input-bg-disabled)',
+                backgroundColor: isFetched ? 'var(--input-bg-fetched)' : 'var(--input-bg-disabled)',
                 '& fieldset': {
-                    borderColor: 'var(--input-border-default)',
+                    borderColor: isFetched ? 'var(--input-border-fetched)' : 'var(--input-border-default)',
                 },
             },
         },
         '& .MuiOutlinedInput-input': {
             padding: 'var(--input-padding-y) var(--input-padding-x)',
+            color: 'var(--input-text-color)',
+            WebkitTextFillColor: 'var(--input-text-color)',
             '&::placeholder': {
                 color: 'var(--input-placeholder-color)',
                 opacity: 1,
+            },
+            '&.Mui-disabled': {
+                color: isFetched ? 'var(--input-text-color)' : 'inherit',
+                WebkitTextFillColor: isFetched ? 'var(--input-text-color)' : 'inherit',
             },
         },
         '& .MuiInputAdornment-root': {
@@ -233,15 +241,17 @@ const InputField = ({
                                 </IconButton>
                             )}
                             {isFetched && editable && (
-                                <IconButton
+                                <button
+                                    type="button"
                                     onClick={onEdit}
-                                    edge="end"
-                                    className="input-field-icon-btn input-field-edit-btn"
+                                    className="input-field-edit-btn"
                                     tabIndex={-1}
                                 >
-                                    <MdEdit className="input-field-icon" />
+                                    <span className="input-field-edit-icon-wrap">
+                                        <MdEdit className="input-field-edit-icon" />
+                                    </span>
                                     <span className="input-field-edit-text">Edit</span>
-                                </IconButton>
+                                </button>
                             )}
                         </InputAdornment>
                     ),
@@ -346,25 +356,84 @@ const InputField = ({
     };
 
     /**
-     * Render appropriate input based on type
-     */
-    /**
      * Render switch toggle
      */
     const renderSwitch = () => {
+        const isActive = value === 'active' || value === true;
+        const isFetchedSwitch = disabled || type === 'fetched';
+
+        // For fetched/disabled state, show the toggle (disabled) with Edit button
+        if (isFetchedSwitch) {
+            return (
+                <div className="input-field-status-display">
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={isActive}
+                                disabled
+                                color="primary"
+                            />
+                        }
+                        label={isActive ? 'Active' : 'Inactive'}
+                        className="input-field-switch-label"
+                        sx={{ ml: 0 }}
+                    />
+                    {editable && (
+                        <button
+                            type="button"
+                            onClick={onEdit}
+                            className="input-field-edit-btn"
+                            tabIndex={-1}
+                            style={{ marginLeft: '12px' }}
+                        >
+                            <span className="input-field-edit-icon-wrap">
+                                <MdEdit className="input-field-edit-icon" />
+                            </span>
+                            <span className="input-field-edit-text">Edit</span>
+                        </button>
+                    )}
+                </div>
+            );
+        }
+
         return (
             <FormControlLabel
                 control={
                     <Switch
-                        checked={value === 'active' || value === true}
+                        checked={isActive}
                         onChange={(e) => handleChange(e.target.checked ? 'active' : 'inactive')}
-                        disabled={disabled || type === 'fetched'}
                         color="primary"
                     />
                 }
                 label={options && options[0] ? options[0].label : 'Active'}
                 className="input-field-switch-label"
                 sx={{ ml: 0 }}
+            />
+        );
+    };
+
+    /**
+     * Render textarea (multiline text input)
+     */
+    const renderTextarea = () => {
+        const isFetched = type === 'fetchedTextarea';
+
+        return (
+            <StyledTextField
+                inputType={isFetched ? 'fetched' : 'text'}
+                multiline
+                rows={3}
+                placeholder={placeholder}
+                value={value}
+                onChange={handleChange}
+                disabled={disabled || isFetched}
+                error={error}
+                fullWidth={fullWidth}
+                InputProps={{
+                    readOnly: isFetched,
+                }}
+                className="input-field-textarea"
+                {...props}
             />
         );
     };
@@ -381,6 +450,9 @@ const InputField = ({
                 return renderDropdown();
             case INPUT_TYPES.switch:
                 return renderSwitch();
+            case INPUT_TYPES.textarea:
+            case INPUT_TYPES.fetchedTextarea:
+                return renderTextarea();
             case INPUT_TYPES.password:
             case INPUT_TYPES.fetched:
             case INPUT_TYPES.text:

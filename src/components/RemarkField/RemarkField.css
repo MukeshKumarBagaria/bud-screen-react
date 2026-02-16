@@ -1,0 +1,35 @@
+/**
+ * RemarkField Component Styles
+ * Uses CSS variables from index.css for theming
+ */
+
+.remark-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--input-gap);
+    width: 100%;
+}
+
+/* Label — matches Figma: Body/Base/EN-B */
+.remark-field__label {
+    font-family: var(--font-sans);
+    font-size: var(--input-label-font-size);
+    font-style: normal;
+    font-weight: var(--input-label-font-weight);
+    line-height: 21px;
+    color: var(--input-label-color);
+}
+
+/* Required asterisk */
+.remark-field__required {
+    color: var(--input-label-required-color);
+    margin-left: 4px;
+}
+
+/* Helper text */
+.remark-field__helper {
+    font-family: var(--font-sans);
+    font-size: var(--input-subtext-font-size);
+    color: var(--input-subtext-color);
+    line-height: 1.45;
+}

@@ -1,0 +1,49 @@
+/**
+ * AuditTrail — Action badge styles only
+ * Table layout handled by DataTable component
+ */
+
+/* Action badges */
+.audit-trail__action {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.audit-trail__action--created {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+.audit-trail__action--updated {
+    background-color: #E3F2FD;
+    color: #1565C0;
+}
+
+.audit-trail__action--submitted {
+    background-color: #FFF3E0;
+    color: #E65100;
+}
+
+.audit-trail__action--reverted {
+    background-color: #FFEBEE;
+    color: #C62828;
+}
+
+.audit-trail__action--verified {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+.audit-trail__action--approved {
+    background-color: #E8F5E9;
+    color: #1B5E20;
+}
+
+.audit-trail__action--rejected {
+    background-color: #FFEBEE;
+    color: #B71C1C;
+}

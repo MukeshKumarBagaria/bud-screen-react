@@ -12,7 +12,6 @@ function App() {
             <Routes>
                 {/* Demo page */}
                 <Route path="/demo" element={<InputFieldDemo />} />
-
                 {/* Demand Master — Creator / Verifier / Approver */}
                 <Route path="/demand-master/create" element={<CreateDemandMaster />} />
                 <Route path="/demand-master/verify" element={<VerifyDemandMaster />} />

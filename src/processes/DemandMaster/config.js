@@ -8,6 +8,10 @@
  *   'editable'  → normal input (white bg, user can type)
  *   'fetched'   → readonly, auto-filled (blue-10 bg)
  *   'hidden'    → field not rendered for this role
+ *
+ * editableRoles:
+ *   Array of roles that can click "Edit" to modify a fetched field.
+ *   Only applies when the field is in 'fetched' mode for that role.
  */
 
 export const DEMAND_MASTER_FIELDS = [
@@ -17,19 +21,22 @@ export const DEMAND_MASTER_FIELDS = [
         type: 'text',
         placeholder: 'Enter 3 digit demand no',
         required: true,
+        defaultValue: '045',
         roles: { creator: 'editable', verifier: 'fetched', approver: 'fetched' },
+        editableRoles: [],
     },
     {
         id: 'demandType',
         label: 'Demand Type',
         type: 'radio',
         required: true,
-        defaultValue: 'normal',
+        defaultValue: 'common',
         options: [
             { value: 'common', label: 'Common' },
             { value: 'normal', label: 'Normal' },
         ],
         roles: { creator: 'editable', verifier: 'fetched', approver: 'fetched' },
+        editableRoles: ['verifier', 'approver'],
     },
     {
         id: 'nomenclatureEn',
@@ -37,7 +44,9 @@ export const DEMAND_MASTER_FIELDS = [
         type: 'text',
         placeholder: 'Enter description in English',
         required: true,
-        roles: { creator: 'editable', verifier: 'editable', approver: 'fetched' },
+        defaultValue: 'Revenue Department',
+        roles: { creator: 'editable', verifier: 'fetched', approver: 'fetched' },
+        editableRoles: ['verifier', 'approver'],
     },
     {
         id: 'nomenclatureHi',
@@ -45,7 +54,9 @@ export const DEMAND_MASTER_FIELDS = [
         type: 'text',
         placeholder: 'विवरण हिंदी में दर्ज करें',
         required: false,
-        roles: { creator: 'editable', verifier: 'editable', approver: 'fetched' },
+        defaultValue: 'राजस्व विभाग',
+        roles: { creator: 'editable', verifier: 'fetched', approver: 'fetched' },
+        editableRoles: ['verifier', 'approver'],
     },
     {
         id: 'bookNo',
@@ -53,12 +64,14 @@ export const DEMAND_MASTER_FIELDS = [
         type: 'dropdown',
         placeholder: '-- Please Select --',
         required: true,
+        defaultValue: 'book1',
         options: [
             { value: 'book1', label: 'Book 1' },
             { value: 'book2', label: 'Book 2' },
             { value: 'book3', label: 'Book 3' },
         ],
-        roles: { creator: 'editable', verifier: 'fetched', approver: 'fetched' },
+        roles: { creator: 'editable', verifier: 'editable', approver: 'fetched' },
+        editableRoles: ['approver'],
     },
     {
         id: 'activeStatus',
@@ -68,7 +81,8 @@ export const DEMAND_MASTER_FIELDS = [
         helperText: 'Enable or disable this demand number immediately.',
         defaultValue: 'active',
         options: [{ value: 'active', label: 'Active' }],
-        roles: { creator: 'editable', verifier: 'fetched', approver: 'fetched' },
+        roles: { creator: 'editable', verifier: 'editable', approver: 'editable' },
+        editableRoles: [],
         props: {
             fullWidth: true,
             sx: {
@@ -78,15 +92,11 @@ export const DEMAND_MASTER_FIELDS = [
                 borderRadius: '8px',
                 padding: '16px',
                 display: 'grid',
-                // Define grid areas:
-                // [label   switch]
-                // [subtext switch]
                 gridTemplateAreas: '"label switch" "subtext switch"',
                 gridTemplateColumns: '1fr auto',
                 gap: '4px',
                 alignItems: 'center',
 
-                // Target children to place them in grid areas
                 '& .input-field-label': {
                     gridArea: 'label',
                     margin: 0,
@@ -108,26 +118,75 @@ export const DEMAND_MASTER_FIELDS = [
             }
         }
     },
+    {
+        id: 'creatorRemarks',
+        label: 'Creator Remarks',
+        type: 'textarea',
+        placeholder: '',
+        required: false,
+        roles: { creator: 'hidden', verifier: 'fetched', approver: 'fetched' },
+        props: {
+            fullWidth: true,
+            sx: { gridColumn: '1 / -1' },
+            InputProps: { readOnly: true },
+        },
+    },
+    {
+        id: 'verifierRemarks',
+        label: 'Verifier Remarks',
+        type: 'textarea',
+        placeholder: '',
+        required: false,
+        roles: { creator: 'hidden', verifier: 'hidden', approver: 'fetched' },
+        props: {
+            fullWidth: true,
+            sx: { gridColumn: '1 / -1' },
+            InputProps: { readOnly: true },
+        },
+    },
 ];
+
+/**
+ * Remark field configs per role.
+ * Only roles listed here will render a RemarkField at the bottom.
+ */
+export const DEMAND_MASTER_REMARKS = {
+    verifier: {
+        label: 'Verifier Remarks',
+        placeholder: 'Enter remarks... Mandatory if Reverting.',
+        required: false,
+        maxLength: 500,
+    },
+    creator: {
+        label: 'Creator Remarks',
+        placeholder: 'Enter remarks...',
+        required: false,
+        maxLength: 500,
+    },
+    approver: {
+        label: 'Approver Remarks',
+        placeholder: 'Enter remarks... Mandatory if Reverting.',
+        required: false,
+        maxLength: 500,
+    },
+};
 
 /**
  * Action button configs per role
  */
 export const DEMAND_MASTER_ACTIONS = {
     creator: [
-        { variant: 'submit', label: 'Submit' },
-        { variant: 'draft', label: 'Save as Draft' },
         { variant: 'reset', label: 'Reset' },
+        { variant: 'draft', label: 'Draft' },
+        { variant: 'submit', label: 'Submit' },
     ],
     verifier: [
+        { variant: 'return', label: 'Revert' },
         { variant: 'submit', label: 'Verify' },
-        { variant: 'return', label: 'Return' },
-        { variant: 'hold', label: 'Hold' },
     ],
     approver: [
+        { variant: 'return', label: 'Revert' },
         { variant: 'submit', label: 'Approve' },
-        { variant: 'reject', label: 'Reject' },
-        { variant: 'return', label: 'Return' },
     ],
 };
 
